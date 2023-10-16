@@ -6,29 +6,40 @@ import Footer from './components/Footer.jsx';
 
 
 import {
-  createBrowserRouter,
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet
 
-  RouterProvider,
 } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element:<HomePage/> ,
-  },
-  {
-    path: "/detail/:id",
-    element: <DetailPage/>,
-  },
-]);
-const App = () => {
+
+
+
+
+
+const Layout = () => {
   return (
     <>
-    <TopBar/>
-    <RouterProvider router={router}  />
-   
-    <Footer/>
+      <TopBar />
+      <main>
+        <Outlet/>
+      </main>
+      <Footer />
     </>
+  )
+}
+
+const App = () => {
+  return (
+    <BrowserRouter>
+    <Routes>
+    <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
+    </Route>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
