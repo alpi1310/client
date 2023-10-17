@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const rooturl = import.meta.env.VITE_APP_BACKEND_ROOT || "http://localhost:300"
@@ -12,20 +12,27 @@ const Recommend = () => {
       .then((data) => setCs(data));
   }, []);
 
-  const card = (data,i) => {
+  const card = (data, i) => {
 
-    if(i>=3) return
-    
+    if (i >= 3) return
+
     return (<div>
       <div>
         <img src={data?.image} alt={data?.name} />
       </div>
       <div>
-        <h2>{data?.name}</h2>
-        <h2>{data?.price}</h2>
+        <div className="font-semibold text-xl flex gap-4">
+          <div >
+            <h2>{data?.name}</h2>
+          </div>
+          <div>
+            <h2>{data?.price}</h2>
+          </div>
 
+        </div>
+       
         <p>{data?.intro}</p>
-
+        <div className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -44,19 +51,20 @@ const Recommend = () => {
         <span>
           {data?.rating} ({data?.reviewCount})
         </span>
+        </div>
       </div>
       <Link to={`/detail/${data?.id}`}>
-      <button className="bg-primary">
+        <button className="bg-primary text-white  py-2 px-4  rounded-xl w-55">
           View service
-      </button>
+        </button>
       </Link>
     </div>)
   };
 
   return (
-  <dir className="flex gap-5">
-     {ca?.map(card)}
-  </dir>
+    <dir className="flex gap-5">
+      {ca?.map(card)}
+    </dir>
   );
 };
 
