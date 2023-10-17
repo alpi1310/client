@@ -140,6 +140,7 @@ function DetailPage() {
         </div>
       </div>
     </div >
+      <h4 className="font-bold text-2xl items-center mx-16">Recommended for you</h4>
       <Recommend />
     </>
   );
